@@ -2,23 +2,30 @@ class MarkerManager {
   constructor(map){
     this.map = map;
     this.markers = [];
-    this.benches = [];
   }
 
   updateMarkers(benches){
     this._benchesToAdd(benches).forEach( bench => {
       this._createMarkerFromBench(bench);
     });
+    this._markersToRemove(benches).forEach( marker => {
+      this._removeMarker(marker);
+    });
   }
 
   _benchesToAdd(benches) {
-    debugger;
-    const btoa = benches.map( bench => {
-      if (!this.benches.includes(bench)) {
-        return bench;
+    const benchDescriptions = this.markers.map( marker => {
+      return marker.title;
+    });
+
+    const toAdd = [];
+
+    benches.forEach( bench => {
+      if (!benchDescriptions.includes(bench.description)) {
+        toAdd.push(bench);
       }
     });
-    return btoa;
+    return toAdd;
   }
 
   _createMarkerFromBench(bench) {
@@ -28,7 +35,26 @@ class MarkerManager {
     title: bench.description
     });
     this.markers.push(marker);
-    this.benches.push(bench);
+  }
+
+  _markersToRemove(benches) {
+    const benchDescriptions = benches.map( bench => {
+      return bench.description;
+    });
+
+    const toRemove = [];
+    this.markers.forEach( marker => {
+      if (!benchDescriptions.includes(marker.title)) {
+        toRemove.push(marker);
+      }
+    });
+    return toRemove;
+  }
+
+  _removeMarker(marker) {
+    marker.setMap(null);
+    const markerIdx = this.markers.indexOf(marker);
+    this.markers.splice(markerIdx, 1);
   }
 }
 
