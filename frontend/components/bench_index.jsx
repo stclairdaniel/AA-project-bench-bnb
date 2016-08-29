@@ -3,8 +3,8 @@ import BenchIndexItem from './bench_index_item.jsx';
 
 class BenchIndex extends React.Component {
   render() {
-    const benchIndexLis = this.props.benches.map((bench) => {
-        return <BenchIndexItem bench={bench} key={bench.description}/>;
+    const benchIndexLis = this.props.benches.map((bench, index) => {
+        return <BenchIndexItem bench={bench} key={bench.description + index}/>;
       });
 
     return (<ul>{benchIndexLis}</ul>);

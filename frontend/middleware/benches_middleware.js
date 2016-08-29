@@ -1,5 +1,5 @@
-import { BenchConstants, receiveBenches, requestBenches } from '../actions/bench_actions.js';
-import { fetchBenches } from '../util/bench_api_util.js';
+import { BenchConstants, receiveBenches, requestBenches, receiveBench } from '../actions/bench_actions.js';
+import { fetchBenches, createBench } from '../util/bench_api_util.js';
 import { FilterConstants } from '../actions/filter_actions.js';
 
 const BenchesMiddleware = ({getState, dispatch}) => next => action => {
@@ -13,6 +13,10 @@ const BenchesMiddleware = ({getState, dispatch}) => next => action => {
       next(action);
       dispatch(requestBenches());
       break;
+    case BenchConstants.CREATE_BENCH:
+      const createSuccess = data => dispatch(receiveBench(data));
+      createBench(action.bench, createSuccess);
+      next(action);
     default:
       return next(action);
   }
