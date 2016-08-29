@@ -13,7 +13,7 @@ class BenchMap extends React.Component {
     this.MarkerManager = new MarkerManager(this.map);
     this.MarkerManager.updateMarkers(this.props.benches);
 
-    this.map.addListener('idle', () => {
+    this.map.addListener('bounds_changed', () => {
       const latLngBounds = this.map.getBounds();
       const northEast = latLngBounds.getNorthEast();
       const southWest = latLngBounds.getSouthWest();
