@@ -1,6 +1,8 @@
-import { BenchConstants, receiveBenches, requestBenches, receiveBench } from '../actions/bench_actions.js';
-import { fetchBenches, createBench } from '../util/bench_api_util.js';
-import { FilterConstants } from '../actions/filter_actions.js';
+//Actions
+import { BenchConstants, receiveBenches, requestBenches, receiveBench } from '../actions/bench_actions';
+//Util
+import { FilterConstants } from '../actions/filter_actions';
+import { fetchBenches, createBench } from '../util/bench_api_util';
 
 const BenchesMiddleware = ({getState, dispatch}) => next => action => {
   switch(action.type) {
