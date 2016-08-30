@@ -5,7 +5,7 @@ import SessionForm from './session_form';
 const mapStateToProps = (state, ownProps) => ({
   loggedIn: (state.session.currentUser ? true : false),
   errors: state.session.errors,
-  formType: ownProps.location
+  formType: ownProps.location.pathname.slice(1)
 });
 
 const mapDispatchToProps = dispatch => ({
