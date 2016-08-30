@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Greeting = (props) => {
   if (props.currentUser) {
@@ -11,8 +12,8 @@ const Greeting = (props) => {
   } else {
     return (
       <div>
-        <button onClick={props.signup}>Sign Up</button>
-        <button onClick={props.login}>Log In</button>
+        <Link to="signup">Sign Up</Link>
+        <Link to="login">Log In</Link>
       </div>
     );
   }

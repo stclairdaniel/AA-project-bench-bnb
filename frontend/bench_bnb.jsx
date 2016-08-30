@@ -3,10 +3,9 @@ import ReactDom from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { signup, login, logout } from './actions/session_actions';
-window.signup = signup
-window.login = login
-window.logout = logout
+//Test
+import { login } from './actions/session_actions.js';
+window.login = login;
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
